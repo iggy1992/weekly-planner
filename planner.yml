@@ -1,0 +1,53 @@
+name: Weekly Planner Bot
+
+on:
+  schedule:
+    # ── 한국 시간 기준 (UTC+9) ──────────────────────────────
+    # 월요일 09:00 KST → UTC 00:00 월요일
+    - cron: "0 0 * * 1"
+    # 화~금 09:00 KST → UTC 00:00 화~금
+    - cron: "0 0 * * 2-5"
+
+  # 수동 실행 (테스트용)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "실행 모드 (auto / monday / daily / friday)"
+        required: false
+        default: "auto"
+
+jobs:
+  run-planner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 레포 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: 의존성 설치
+        run: pip install requests
+
+      - name: 플래너 실행
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'auto' }}"
+          echo "▶ mode=$MODE"
+          python scripts/planner.py $MODE
+
+      # tasks.json이 변경됐을 때(주 초기화)만 커밋
+      - name: 변경사항 커밋 (주 초기화 시)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/tasks.json
+          git diff --cached --quiet || git commit -m "chore: 주 초기화 - $(date +'%Y-%m-%d')"
+          git push || true
