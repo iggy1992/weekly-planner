@@ -1,0 +1,19 @@
+{
+  "week_start": "",
+  "tasks": [
+    { "id": 1,  "text": "스탁론 마케팅 전략 수립",                                          "tag": "회사", "done": false },
+    { "id": 2,  "text": "개인신용 ToM 전략 수립",                                            "tag": "회사", "done": false },
+    { "id": 3,  "text": "콘텐츠 : 4049 타겟 에잇퍼센트 투자 안내서 작성",                   "tag": "회사", "done": false },
+    { "id": 4,  "text": "GEO/AEO - '목돈마련' 관련 대출 콘텐츠 테스트 - 기존 콘텐츠 업데이트 방식", "tag": "회사", "done": false },
+    { "id": 5,  "text": "5월 마케팅 비용 정산",                                              "tag": "회사", "done": false },
+    { "id": 6,  "text": "5월 월간 보고서 작성",                                              "tag": "회사", "done": false },
+    { "id": 7,  "text": "인터뷰 준비 (직방/호갱노노 CRM)",                                  "tag": "개인", "done": false },
+    { "id": 8,  "text": "TEO 지원",                                                          "tag": "개인", "done": false },
+    { "id": 9,  "text": "수영 강습 (월/수/금)",                                              "tag": "개인", "done": false },
+    { "id": 10, "text": "자유 수영 (목/토)",                                                 "tag": "개인", "done": false },
+    { "id": 11, "text": "웨이트 PT (화/목)",                                                 "tag": "개인", "done": false },
+    { "id": 12, "text": "6월 호크마 콘티 준비",                                              "tag": "교회", "done": false },
+    { "id": 13, "text": "6월 한마음 콘티 준비",                                              "tag": "교회", "done": false },
+    { "id": 14, "text": "다니엘 2강 공과 준비",                                              "tag": "교회", "done": false }
+  ]
+}
